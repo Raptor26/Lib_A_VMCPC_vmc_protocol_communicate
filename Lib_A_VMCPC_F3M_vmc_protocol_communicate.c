@@ -8,7 +8,7 @@
 
 
 /*#### |Begin| --> Секция - "Include" ########################################*/
-#include "Lib_A_VMCPC_vmc_protocol_communicate.h"
+#include <Lib_A_VMCPC_vmc_protocol_communicate/Lib_A_VMCPC_F3M_vmc_protocol_communicate.h>
 /*#### |End  | <-- Секция - "Include" ########################################*/
 
 
@@ -18,8 +18,8 @@
 
 /*#### |Begin| --> Секция - "Локальные переменные" ###########################*/
 static uint16_t
-VMCPC_LEGACY_CalcCRC16For3Motors(
-	vmcpc_legacy_package_for_3_motors_s *p_s);
+VMCPC_F3M_CalcCRC16For3Motors(
+	vmcpc_f3m_package_s *p_s);
 /*#### |End  | <-- Секция - "Локальные переменные" ###########################*/
 
 
@@ -43,8 +43,8 @@ VMCPC_LEGACY_CalcCRC16For3Motors(
  * @return	None
  */
 void
-VMCPC_LEGACY_SetCotrolPackageFor3Motors(
-	vmcpc_legacy_package_for_3_motors_s *p_s,
+VMCPC_F3M_SetControlPackage(
+	vmcpc_f3m_package_s *p_s,
 	__VMCPC_FPT__ roll,
 	__VMCPC_FPT__ pitch,
 	__VMCPC_FPT__ yaw)
@@ -61,7 +61,7 @@ VMCPC_LEGACY_SetCotrolPackageFor3Motors(
 	/* Расчет контрольной суммы пакета данных и копирование в конец пакета
 	 * данных */
 	p_s->poly0x1021_crc16 =
-		VMCPC_LEGACY_CalcCRC16For3Motors(p_s);
+		VMCPC_F3M_CalcCRC16For3Motors(p_s);
 }
 
 /**
@@ -78,13 +78,13 @@ VMCPC_LEGACY_SetCotrolPackageFor3Motors(
  * @return	Момент на валку, который необходимо выдерживать до следующей команды
  */
 __VMCPC_FPT__
-VMCPC_LEGACY_ParceControlPackageFor3Motors(
-	vmcpc_legacy_package_for_3_motors_s *p_s,
+VMCPC_F3M_ParceControlPackage(
+	vmcpc_f3m_package_s *p_s,
 	vmcpc_who_i_am_e whoIAm)
 {
 	/* Если начало пакета и контрольная сумма верны */
 	if ((p_s->startFrame == VMVPC_START_FRAME_1_BYTE)
-			&& (p_s->poly0x1021_crc16 == VMCPC_LEGACY_CalcCRC16For3Motors(p_s)))
+			&& (p_s->poly0x1021_crc16 == VMCPC_F3M_CalcCRC16For3Motors(p_s)))
 	{
 		switch (whoIAm)
 		{
@@ -120,12 +120,12 @@ VMCPC_LEGACY_ParceControlPackageFor3Motors(
  * @return	16-ти битная контрольная сумма пакета данных
  */
 uint16_t
-VMCPC_LEGACY_CalcCRC16For3Motors(
-	vmcpc_legacy_package_for_3_motors_s *p_s)
+VMCPC_F3M_CalcCRC16For3Motors(
+	vmcpc_f3m_package_s *p_s)
 {
 	return (CRC_XOR_CCITT_Poly0x1021_Crc16(
 				(uint8_t*)p_s,
-				sizeof(vmcpc_legacy_package_for_3_motors_s) - VMCPC_LEGACY_PACKAGE_FOR_3_MOTORS_S_BYTES_NUMB));
+				sizeof(vmcpc_f3m_package_s) - VMCPC_F3M_PACKAGE_S_CRC_BYTES_NUMB));
 }
 /*#### |End  | <-- Секция - "Описание локальных функций" #####################*/
 

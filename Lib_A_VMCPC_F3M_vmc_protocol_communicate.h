@@ -7,8 +7,8 @@
  */
 
 
-#ifndef LIB_A_VMCPC_VMC_PROTOCOL_COMMUNICATE_H_
-#define LIB_A_VMCPC_VMC_PROTOCOL_COMMUNICATE_H_
+#ifndef LIB_A_VMCPC_F3M_VMC_PROTOCOL_COMMUNICATE_H_
+#define LIB_A_VMCPC_F3M_VMC_PROTOCOL_COMMUNICATE_H_
 
 
 /*#### |Begin| --> Секция - "Include" ########################################*/
@@ -87,8 +87,8 @@ typedef struct
 	uint16_t poly0x1021_crc16;
 }
 __attribute__((__packed__))
-vmcpc_legacy_package_for_3_motors_s;
-#define VMCPC_LEGACY_PACKAGE_FOR_3_MOTORS_S_BYTES_NUMB	2
+vmcpc_f3m_package_s;
+#define VMCPC_F3M_PACKAGE_S_CRC_BYTES_NUMB	2
 /*#### |End  | <-- Секция - "Определение типов" ##############################*/
 
 
@@ -98,15 +98,15 @@ vmcpc_legacy_package_for_3_motors_s;
 
 /*#### |Begin| --> Секция - "Прототипы глобальных функций" ###################*/
 extern void
-VMCPC_LEGACY_SetCotrolPackageFor3Motors(
-	vmcpc_legacy_package_for_3_motors_s *p_s,
+VMCPC_F3M_SetControlPackage(
+	vmcpc_f3m_package_s *p_s,
 	__VMCPC_FPT__ roll,
 	__VMCPC_FPT__ pitch,
 	__VMCPC_FPT__ yaw);
 
 extern __VMCPC_FPT__
-VMCPC_LEGACY_ParceControlPackageFor3Motors(
-	vmcpc_legacy_package_for_3_motors_s *p_s,
+VMCPC_F3M_ParceControlPackage(
+	vmcpc_f3m_package_s *p_s,
 	vmcpc_who_i_am_e whoIAm);
 /*#### |End  | <-- Секция - "Прототипы глобальных функций" ###################*/
 
@@ -114,7 +114,7 @@ VMCPC_LEGACY_ParceControlPackageFor3Motors(
 /*#### |Begin| --> Секция - "Определение макросов" ###########################*/
 /*#### |End  | <-- Секция - "Определение макросов" ###########################*/
 
-#endif	/* LIB_A_VMCPC_VMC_PROTOCOL_COMMUNICATE_H_ */
+#endif	/* LIB_A_VMCPC_F3M_VMC_PROTOCOL_COMMUNICATE_H_ */
 
 /*############################################################################*/
 /*################################ END OF FILE ###############################*/
