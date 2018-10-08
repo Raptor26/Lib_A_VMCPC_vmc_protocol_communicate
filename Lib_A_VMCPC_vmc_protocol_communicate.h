@@ -7,18 +7,20 @@
  */
 
 
-#ifndef ${include_guard_symbol}
-#define ${include_guard_symbol}
+#ifndef LIB_A_VMCPC_VMC_PROTOCOL_COMMUNICATE_H_
+#define LIB_A_VMCPC_VMC_PROTOCOL_COMMUNICATE_H_
 
 
 /*#### |Begin| --> Секция - "Include" ########################################*/
 /*==== |Begin| --> Секция - "C libraries" ====================================*/
+#include <math.h>
 /*==== |End  | <-- Секция - "C libraries" ====================================*/
 
 /*==== |Begin| --> Секция - "MK peripheral libraries" ========================*/
 /*==== |End  | <-- Секция - "MK peripheral libraries" ========================*/
 
 /*==== |Begin| --> Секция - "Extern libraries" ===============================*/
+#include "../Lib_A_CRC_cyclic_redundancy_check/Lib_A_CRC_cyclic_redundancy_check.h"
 /*==== |End  | <-- Секция - "Extern libraries" ===============================*/
 /*#### |End  | <-- Секция - "Include" ########################################*/
 
@@ -42,7 +44,7 @@
 /*#### |Begin| --> Секция - "Определение макросов" ###########################*/
 /*#### |End  | <-- Секция - "Определение макросов" ###########################*/
 
-#endif	/* ${include_guard_symbol} */
+#endif	/* LIB_A_VMCPC_VMC_PROTOCOL_COMMUNICATE_H_ */
 
 /*############################################################################*/
 /*################################ END OF FILE ###############################*/
