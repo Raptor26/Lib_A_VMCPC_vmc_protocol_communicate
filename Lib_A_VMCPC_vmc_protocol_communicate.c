@@ -1,8 +1,8 @@
 /** 
- * @file   	%<%NAME%>%.%<%EXTENSION%>%
- * @author 	%<%USER%>%
+ * @file   	Lib_A_VMCPC_vmc_protocol_communicate.c
+ * @author 	m.isaev
  * @version	
- * @date 	%<%DATE%>%, %<%TIME%>%
+ * @date 	8 окт. 2018 г.
  * @brief
  */
 

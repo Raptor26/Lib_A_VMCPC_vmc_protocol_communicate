@@ -1,8 +1,8 @@
 /** 
- * @file   	%<%NAME%>%.%<%EXTENSION%>%
- * @author 	%<%USER%>%
+ * @file   	Lib_A_VMCPC_vmc_protocol_communicate.h
+ * @author 	
  * @version	
- * @date 	%<%DATE%>%, %<%TIME%>%
+ * @date 	8 окт. 2018 г.
  * @brief
  */
 
@@ -13,7 +13,7 @@
 
 /*#### |Begin| --> Секция - "Include" ########################################*/
 /*==== |Begin| --> Секция - "C libraries" ====================================*/
-#include <math.h>
+#include <stdint.h>
 /*==== |End  | <-- Секция - "C libraries" ====================================*/
 
 /*==== |Begin| --> Секция - "MK peripheral libraries" ========================*/
@@ -26,6 +26,11 @@
 
 
 /*#### |Begin| --> Секция - "Определение констант" ###########################*/
+#if !defined (__VMCPC_FPT__)	///< __VMCPC_FPT__ - FLOAT_POINT_TYPE
+#error "Please, set value for macros __VMCPC_FPT__ float or double"
+#endif
+
+#define VMVPC_START_FRAME_1_BYTE				((uint8_t)0xAA)
 /*#### |End  | <-- Секция - "Определение констант" ###########################*/
 
 
