@@ -28,6 +28,20 @@ VMCPC_LEGACY_CalcCRC16For3Motors(
 
 
 /*#### |Begin| --> Секция - "Описание глобальных функций" ####################*/
+
+/**
+ * @brief	Функция формирует пакет данных для управления 3-мя
+ * 			электродвигателями
+ * @param[out]	*p_s:	Указатель на структуру, содержащую пакет данных для
+ * 						управления электродвигателями
+ * @param[in]	roll:	Момент на валу, который необходимо выдерживать
+ * 						двигателю крена
+ * @param[in]	pitch:	Момент на валу, который необходимо выдерживать
+ * 						двигателю тангажа
+ * @param[in]	yaw:	Момент на валу, который необходимо выдерживать
+ * 						двигателю азимута
+ * @return	None
+ */
 void
 VMCPC_LEGACY_SetCotrolPackageFor3Motors(
 	vmcpc_legacy_package_for_3_motors_s *p_s,
@@ -50,6 +64,19 @@ VMCPC_LEGACY_SetCotrolPackageFor3Motors(
 		VMCPC_LEGACY_CalcCRC16For3Motors(p_s);
 }
 
+/**
+ * @brief	Функция выполняет разбор принятого пакета данных
+ * @param[in]	*p_s:	Указатель на структуру, которая содержит пакет данных
+ * 						для управления электродвигателями
+ * @param[in]	whoIAm:	Перечисляемый тип, который указывает, управление по
+ * 						какой оси осуществляет контроллер векторного регулятора
+ * 						@arg VMCPC_I_AM_ROLL
+ * 						@arg VMCPC_I_AM_PITCH
+ * 						@arg VMCPC_I_AM_YAW
+ * 						@arg VMCPC_VECT_RIGHT
+ * 						@arg VMCPC_VECT_LEFT
+ * @return	Момент на валку, который необходимо выдерживать до следующей команды
+ */
 __VMCPC_FPT__
 VMCPC_LEGACY_ParceControlPackageFor3Motors(
 	vmcpc_legacy_package_for_3_motors_s *p_s,
@@ -85,6 +112,13 @@ VMCPC_LEGACY_ParceControlPackageFor3Motors(
 
 
 /*#### |Begin| --> Секция - "Описание локальных функций" #####################*/
+
+/**
+ * @brief	Функция выполняет расчет 16-ти битной контрольной суммы пакета данных
+ * @param[in]	*p_s:	Указатель на структуру, которая содержит пакет данных
+ * 						для управления электродвигателям
+ * @return	16-ти битная контрольная сумма пакета данных
+ */
 uint16_t
 VMCPC_LEGACY_CalcCRC16For3Motors(
 	vmcpc_legacy_package_for_3_motors_s *p_s)

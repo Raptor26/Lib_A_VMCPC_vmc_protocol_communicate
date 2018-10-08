@@ -36,17 +36,20 @@
 
 
 /*#### |Begin| --> Секция - "Определение типов" ##############################*/
-typedef enum
+enum
 {
 	VMCPC_VECT_X_ROLL = 0,
 	VMCPC_VECT_Y_PITCH,
 	VMCPC_VECT_Z_YAW,
 
+	/**
+	 * @brief	Размерность вектора управления 3-мя электродвигателями
+	 */
+	VMCPC_SIZE_VECT_ARR,
+
 	VMCPC_VECT_RIGHT 	= VMCPC_VECT_X_ROLL,
 	VMCPC_VECT_LEFT 	= VMCPC_VECT_Y_PITCH,
-
-	VMCPC_SIZE_VECT_ARR = 3,
-} vmcpc_legacy_vector_control_for_3_motors_e;
+};
 
 typedef enum
 {
