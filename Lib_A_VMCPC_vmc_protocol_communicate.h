@@ -42,7 +42,10 @@ typedef enum
 	VMCPC_VECT_Y_PITCH,
 	VMCPC_VECT_Z_YAW,
 
-	VMCPC_SIZE_VECT_ARR,
+	VMCPC_VECT_RIGHT 	= VMCPC_VECT_X_ROLL,
+	VMCPC_VECT_LEFT 	= VMCPC_VECT_Y_PITCH,
+
+	VMCPC_SIZE_VECT_ARR = 3,
 } vmcpc_legacy_vector_control_for_3_motors_e;
 
 typedef enum
@@ -50,6 +53,10 @@ typedef enum
 	VMCPC_I_AM_ROLL 	= VMCPC_VECT_X_ROLL,
 	VMCPC_I_AM_PITCH 	= VMCPC_VECT_Y_PITCH,
 	VMCPC_I_AM_YAW 		= VMCPC_VECT_Z_YAW,
+	VMCPC_I_AM_UNKNOW,
+
+	VMCPC_I_AM_RIGHT 	= VMCPC_I_AM_ROLL,
+	VMCPC_I_AM_LEFT 	= VMCPC_I_AM_PITCH,
 } vmcpc_who_i_am_e;
 
 /**
@@ -60,9 +67,9 @@ typedef enum
  * 			"actualControl_a":
  * 				- если двигатель управляет осью крена, то берется 0-я ячейка массива
  *					@arg VMCPC_VECT_X_ROLL
- * 				- если двигатель управляет осью тангажа, то берется 1-я ячейка массива VMCPC_VECT_Y_PITCH
+ * 				- если двигатель управляет осью тангажа, то берется 1-я ячейка массива
  * 					@arg VMCPC_VECT_Y_PITCH
- * 				- если двигатель управляет осью азимута, то берется 2-я ячейка массива VMCPC_VECT_Z_YAW
+ * 				- если двигатель управляет осью азимута, то берется 2-я ячейка массива
  * 					@arg VMCPC_VECT_Z_YAW
  */
 typedef struct
@@ -88,7 +95,7 @@ vmcpc_legacy_package_for_3_motors_s;
 
 /*#### |Begin| --> Секция - "Прототипы глобальных функций" ###################*/
 extern void
-VMCPC_LEGACY_SetCotrolFor3Motors(
+VMCPC_LEGACY_SetCotrolPackageFor3Motors(
 	vmcpc_legacy_package_for_3_motors_s *p_s,
 	__VMCPC_FPT__ roll,
 	__VMCPC_FPT__ pitch,

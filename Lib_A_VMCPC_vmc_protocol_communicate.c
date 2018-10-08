@@ -29,7 +29,7 @@ VMCPC_LEGACY_CalcCRC16For3Motors(
 
 /*#### |Begin| --> Секция - "Описание глобальных функций" ####################*/
 void
-VMCPC_LEGACY_SetCotrolFor3Motors(
+VMCPC_LEGACY_SetCotrolPackageFor3Motors(
 	vmcpc_legacy_package_for_3_motors_s *p_s,
 	__VMCPC_FPT__ roll,
 	__VMCPC_FPT__ pitch,
@@ -59,19 +59,25 @@ VMCPC_LEGACY_ParceControlPackageFor3Motors(
 	if ((p_s->startFrame == VMVPC_START_FRAME_1_BYTE)
 			&& (p_s->poly0x1021_crc16 == VMCPC_LEGACY_CalcCRC16For3Motors(p_s)))
 	{
-		if (whoIAm == VMCPC_I_AM_ROLL)
+		switch (whoIAm)
 		{
+		case VMCPC_I_AM_ROLL:
 			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_VECT_X_ROLL]);
-		}
-		else if (whoIAm == VMCPC_I_AM_PITCH)
-		{
+			break;
+
+		case VMCPC_I_AM_PITCH:
 			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_VECT_Y_PITCH]);
-		}
-		else
-		{
+			break;
+
+		case VMCPC_I_AM_YAW:
 			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_VECT_Z_YAW]);
+			break;
+
+		default:
+			break;
 		}
 	}
+	/* Если принятый пакет данных не валиден */
 	return ((__VMCPC_FPT__)0.0);
 }
 
