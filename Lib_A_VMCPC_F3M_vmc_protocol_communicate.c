@@ -8,7 +8,7 @@
 
 
 /*#### |Begin| --> Секция - "Include" ########################################*/
-#include <Lib_A_VMCPC_vmc_protocol_communicate/Lib_A_VMCPC_F3M_vmc_protocol_communicate.h>
+#include "Lib_A_VMCPC_F3M_vmc_protocol_communicate.h"
 /*#### |End  | <-- Секция - "Include" ########################################*/
 
 
@@ -54,9 +54,9 @@ VMCPC_F3M_SetControlPackage(
 
 	/* Заполнение массива управления. Значения из этого массива будут
 	 * применены к 3-м электродвигателям */
-	p_s->actualControl_a[VMCPC_VECT_X_ROLL] 	= roll;
-	p_s->actualControl_a[VMCPC_VECT_Y_PITCH] 	= pitch;
-	p_s->actualControl_a[VMCPC_VECT_Z_YAW] 		= yaw;
+	p_s->actualControl_a[VMCPC_F3M_VECT_X_ROLL] 	= roll;
+	p_s->actualControl_a[VMCPC_F3M_VECT_Y_PITCH] 	= pitch;
+	p_s->actualControl_a[VMCPC_F3M_VECT_Z_YAW] 		= yaw;
 
 	/* Расчет контрольной суммы пакета данных и копирование в конец пакета
 	 * данных */
@@ -80,7 +80,7 @@ VMCPC_F3M_SetControlPackage(
 __VMCPC_FPT__
 VMCPC_F3M_ParceControlPackage(
 	vmcpc_f3m_package_s *p_s,
-	vmcpc_who_i_am_e whoIAm)
+	vmcpc_f3m_who_i_am_e whoIAm)
 {
 	/* Если начало пакета и контрольная сумма верны */
 	if ((p_s->startFrame == VMVPC_START_FRAME_1_BYTE)
@@ -88,16 +88,16 @@ VMCPC_F3M_ParceControlPackage(
 	{
 		switch (whoIAm)
 		{
-		case VMCPC_I_AM_ROLL:
-			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_VECT_X_ROLL]);
+		case VMCPC_F3M_I_AM_ROLL:
+			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_X_ROLL]);
 			break;
 
-		case VMCPC_I_AM_PITCH:
-			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_VECT_Y_PITCH]);
+		case VMCPC_F3M_I_AM_PITCH:
+			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_Y_PITCH]);
 			break;
 
-		case VMCPC_I_AM_YAW:
-			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_VECT_Z_YAW]);
+		case VMCPC_F3M_I_AM_YAW:
+			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_Z_YAW]);
 			break;
 
 		default:

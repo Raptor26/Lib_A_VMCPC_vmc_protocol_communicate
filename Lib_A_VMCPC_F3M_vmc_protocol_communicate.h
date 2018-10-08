@@ -13,54 +13,48 @@
 
 /*#### |Begin| --> Секция - "Include" ########################################*/
 /*==== |Begin| --> Секция - "C libraries" ====================================*/
-#include <math.h>
-#include <stdint.h>
 /*==== |End  | <-- Секция - "C libraries" ====================================*/
 
 /*==== |Begin| --> Секция - "MK peripheral libraries" ========================*/
 /*==== |End  | <-- Секция - "MK peripheral libraries" ========================*/
 
 /*==== |Begin| --> Секция - "Extern libraries" ===============================*/
-#include "../Lib_A_CRC_cyclic_redundancy_check/Lib_A_CRC_cyclic_redundancy_check.h"
+#include "Lib_A_VMCPC_vmc_protocol_communicate.h"
 /*==== |End  | <-- Секция - "Extern libraries" ===============================*/
 /*#### |End  | <-- Секция - "Include" ########################################*/
 
 
 /*#### |Begin| --> Секция - "Определение констант" ###########################*/
-#if !defined (__VMCPC_FPT__)	///< __VMCPC_FPT__ - FLOAT_POINT_TYPE
-#error "Please, set value for macros __VMCPC_FPT__ float or double"
-#endif
 
-#define VMVPC_START_FRAME_1_BYTE				((uint8_t)0xAA)
 /*#### |End  | <-- Секция - "Определение констант" ###########################*/
 
 
 /*#### |Begin| --> Секция - "Определение типов" ##############################*/
 enum
 {
-	VMCPC_VECT_X_ROLL = 0,
-	VMCPC_VECT_Y_PITCH,
-	VMCPC_VECT_Z_YAW,
+	VMCPC_F3M_VECT_X_ROLL = 0,
+	VMCPC_F3M_VECT_Y_PITCH,
+	VMCPC_F3M_VECT_Z_YAW,
 
 	/**
 	 * @brief	Размерность вектора управления 3-мя электродвигателями
 	 */
-	VMCPC_SIZE_VECT_ARR,
+	VMCPC_F3M_SIZE_VECT_ARR,
 
-	VMCPC_VECT_RIGHT 	= VMCPC_VECT_X_ROLL,
-	VMCPC_VECT_LEFT 	= VMCPC_VECT_Y_PITCH,
+	VMCPC_F3M_VECT_RIGHT 	= VMCPC_F3M_VECT_X_ROLL,
+	VMCPC_F3M_VECT_LEFT 	= VMCPC_F3M_VECT_Y_PITCH,
 };
 
 typedef enum
 {
-	VMCPC_I_AM_ROLL 	= VMCPC_VECT_X_ROLL,
-	VMCPC_I_AM_PITCH 	= VMCPC_VECT_Y_PITCH,
-	VMCPC_I_AM_YAW 		= VMCPC_VECT_Z_YAW,
-	VMCPC_I_AM_UNKNOW,
+	VMCPC_F3M_I_AM_ROLL 	= VMCPC_F3M_VECT_X_ROLL,
+	VMCPC_F3M_I_AM_PITCH 	= VMCPC_F3M_VECT_Y_PITCH,
+	VMCPC_F3M_I_AM_YAW 		= VMCPC_F3M_VECT_Z_YAW,
+	VMCPC_F3M_I_AM_UNKNOW,
 
-	VMCPC_I_AM_RIGHT 	= VMCPC_I_AM_ROLL,
-	VMCPC_I_AM_LEFT 	= VMCPC_I_AM_PITCH,
-} vmcpc_who_i_am_e;
+	VMCPC_F3M_I_AM_RIGHT 	= VMCPC_F3M_I_AM_ROLL,
+	VMCPC_F3M_I_AM_LEFT 	= VMCPC_F3M_I_AM_PITCH,
+} vmcpc_f3m_who_i_am_e;
 
 /**
  * @brief	Структура пакета данных для управления 3-мя электродвигателями.
@@ -81,7 +75,7 @@ typedef struct
 	uint8_t startFrame;
 
 	/* Массив, в котором содержится значение управления для каждой из 3-х осей */
-	__VMCPC_FPT__ actualControl_a[VMCPC_SIZE_VECT_ARR];
+	__VMCPC_FPT__ actualControl_a[VMCPC_F3M_SIZE_VECT_ARR];
 
 	/* Контрольная сумма пакета данных */
 	uint16_t poly0x1021_crc16;
@@ -107,7 +101,7 @@ VMCPC_F3M_SetControlPackage(
 extern __VMCPC_FPT__
 VMCPC_F3M_ParceControlPackage(
 	vmcpc_f3m_package_s *p_s,
-	vmcpc_who_i_am_e whoIAm);
+	vmcpc_f3m_who_i_am_e whoIAm);
 /*#### |End  | <-- Секция - "Прототипы глобальных функций" ###################*/
 
 
