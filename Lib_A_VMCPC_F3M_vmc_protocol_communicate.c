@@ -56,7 +56,7 @@ VMCPC_F3M_SetControlPackage(
 	 * применены к 3-м электродвигателям */
 	p_s->actualControl_a[VMCPC_F3M_VECT_X_ROLL] 	= roll;
 	p_s->actualControl_a[VMCPC_F3M_VECT_Y_PITCH] 	= pitch;
-	p_s->actualControl_a[VMCPC_F3M_VECT_Z_YAW] 		= yaw;
+	p_s->actualControl_a[VMCPC_F3M_VECT_Z_YAW] 	= yaw;
 
 	/* Расчет контрольной суммы пакета данных и копирование в конец пакета
 	 * данных */

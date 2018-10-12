@@ -21,6 +21,7 @@
 
 /*==== |Begin| --> Секция - "Extern libraries" ===============================*/
 #include "../Lib_A_CRC_cyclic_redundancy_check/Lib_A_CRC_cyclic_redundancy_check.h"
+#include "Lib_A_VMCPC_F3M_vmc_protocol_communicate.h"
 /*==== |End  | <-- Секция - "Extern libraries" ===============================*/
 /*#### |End  | <-- Секция - "Include" ########################################*/
 
