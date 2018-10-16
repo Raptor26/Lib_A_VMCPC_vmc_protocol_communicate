@@ -99,7 +99,7 @@ VMCPC_F3M_SetControlPackage(
 	__VMCPC_FPT__ yaw);
 
 extern __VMCPC_FPT__
-VMCPC_F3M_ParceControlPackage(
+VMCPC_F3M_ParseControlPackage(
 	vmcpc_f3m_package_s *p_s,
 	vmcpc_f3m_who_i_am_e whoIAm);
 /*#### |End  | <-- Секция - "Прототипы глобальных функций" ###################*/

@@ -79,7 +79,7 @@ VMCPC_F3M_SetControlPackage(
  * 			до следующей команды
  */
 __VMCPC_FPT__
-VMCPC_F3M_ParceControlPackage(
+VMCPC_F3M_ParseControlPackage(
 	vmcpc_f3m_package_s *p_s,
 	vmcpc_f3m_who_i_am_e whoIAm)
 {
