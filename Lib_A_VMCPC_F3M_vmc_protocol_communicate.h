@@ -33,27 +33,30 @@
 enum
 {
 	VMCPC_F3M_VECT_X_ROLL = 0,
-	VMCPC_F3M_VECT_Y_PITCH,
+    VMCPC_F3M_VECT_Y_PITCH,
+   
+    VMCPC_F3M_VECT_RIGHT 	= VMCPC_F3M_VECT_X_ROLL,
+    VMCPC_F3M_VECT_LEFT 	= VMCPC_F3M_VECT_Y_PITCH,	
+    
 	VMCPC_F3M_VECT_Z_YAW,
 
 	/**
 	 * @brief	Размерность вектора управления 3-мя электродвигателями
 	 */
 	VMCPC_F3M_SIZE_VECT_ARR,
-
-	VMCPC_F3M_VECT_RIGHT 	= VMCPC_F3M_VECT_X_ROLL,
-	VMCPC_F3M_VECT_LEFT 	= VMCPC_F3M_VECT_Y_PITCH,
 };
 
 typedef enum
 {
 	VMCPC_F3M_I_AM_ROLL 	= VMCPC_F3M_VECT_X_ROLL,
 	VMCPC_F3M_I_AM_PITCH 	= VMCPC_F3M_VECT_Y_PITCH,
-	VMCPC_F3M_I_AM_YAW 		= VMCPC_F3M_VECT_Z_YAW,
-	VMCPC_F3M_I_AM_UNKNOW,
-
-	VMCPC_F3M_I_AM_RIGHT 	= VMCPC_F3M_I_AM_ROLL,
+            
+    VMCPC_F3M_I_AM_RIGHT 	= VMCPC_F3M_I_AM_ROLL,
 	VMCPC_F3M_I_AM_LEFT 	= VMCPC_F3M_I_AM_PITCH,
+            
+	VMCPC_F3M_I_AM_YAW 		= VMCPC_F3M_VECT_Z_YAW,
+     
+	VMCPC_F3M_I_AM_UNKNOW,
 } vmcpc_f3m_who_i_am_e;
 
 /**
@@ -80,7 +83,11 @@ typedef struct
 	/* Контрольная сумма пакета данных */
 	uint16_t poly0x1021_crc16;
 }
+#if defined (__GNUC__)
 __attribute__((__packed__))
+#else
+#error "Define compiler"
+#endif
 vmcpc_f3m_package_s;
 #define VMCPC_F3M_PACKAGE_S_CRC_BYTES_NUMB	2
 /*#### |End  | <-- Секция - "Определение типов" ##############################*/
