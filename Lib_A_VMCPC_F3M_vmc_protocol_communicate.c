@@ -70,11 +70,11 @@ VMCPC_F3M_SetControlPackage(
  * 						для управления электродвигателями
  * @param[in]	whoIAm:	Перечисляемый тип, который указывает, управление по
  * 						какой оси осуществляет контроллер векторного регулятора
- * 						@arg VMCPC_I_AM_ROLL
- * 						@arg VMCPC_I_AM_PITCH
- * 						@arg VMCPC_I_AM_YAW
- * 						@arg VMCPC_VECT_RIGHT
- * 						@arg VMCPC_VECT_LEFT
+ * 						@arg VMCPC_F3M_I_AM_ROLL
+ * 						@arg VMCPC_F3M_I_AM_PITCH
+ * 						@arg VMCPC_F3M_I_AM_YAW
+ * 						@arg VMCPC_F3M_I_AM_RIGHT
+ * 						@arg VMCPC_F3M_I_AM_LEFT
  * @return	Момент на валу электродвигателя, который необходимо выдерживать
  * 			до следующей команды
  */
