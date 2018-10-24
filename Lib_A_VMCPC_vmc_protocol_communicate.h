@@ -27,11 +27,6 @@
 
 
 /*#### |Begin| --> Секция - "Определение констант" ###########################*/
-#if !defined (__VMCPC_FPT__)	///< __VMCPC_FPT__ - FLOAT_POINT_TYPE
-#error "Please, set value for macros __VMCPC_FPT__ float or double"
-#endif
-
-#define VMVPC_START_FRAME_1_BYTE				((uint8_t)0xAA)
 /*#### |End  | <-- Секция - "Определение констант" ###########################*/
 
 

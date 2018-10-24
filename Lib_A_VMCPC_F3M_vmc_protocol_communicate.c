@@ -45,12 +45,12 @@ VMCPC_F3M_CalcCRC16For3Motors(
 void
 VMCPC_F3M_SetControlPackage(
 	vmcpc_f3m_package_s *p_s,
-	__VMCPC_FPT__ roll,
-	__VMCPC_FPT__ pitch,
-	__VMCPC_FPT__ yaw)
+	__VMCPC_F3M_FPT__ roll,
+	__VMCPC_F3M_FPT__ pitch,
+	__VMCPC_F3M_FPT__ yaw)
 {
 	/* Условие начала пакета данных */
-	p_s->startFrame = VMVPC_START_FRAME_1_BYTE;
+	p_s->startFrame = VMCPC_F3M_START_FRAME_1_BYTE;
 
 	/* Заполнение массива управления. Значения из этого массива будут
 	 * применены к 3-м электродвигателям */
@@ -78,27 +78,27 @@ VMCPC_F3M_SetControlPackage(
  * @return	Момент на валу электродвигателя, который необходимо выдерживать
  * 			до следующей команды
  */
-__VMCPC_FPT__
+__VMCPC_F3M_FPT__
 VMCPC_F3M_ParseControlPackage(
 	vmcpc_f3m_package_s *p_s,
 	vmcpc_f3m_who_i_am_e whoIAm)
 {
 	/* Если начало пакета и контрольная сумма верны */
-	if ((p_s->startFrame == VMVPC_START_FRAME_1_BYTE)
+	if ((p_s->startFrame == VMCPC_F3M_START_FRAME_1_BYTE)
 			&& (p_s->poly0x1021_crc16 == VMCPC_F3M_CalcCRC16For3Motors(p_s)))
 	{
 		switch (whoIAm)
 		{
 		case VMCPC_F3M_I_AM_ROLL:
-			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_X_ROLL]);
+			return ((__VMCPC_F3M_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_X_ROLL]);
 			break;
 
 		case VMCPC_F3M_I_AM_PITCH:
-			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_Y_PITCH]);
+			return ((__VMCPC_F3M_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_Y_PITCH]);
 			break;
 
 		case VMCPC_F3M_I_AM_YAW:
-			return ((__VMCPC_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_Z_YAW]);
+			return ((__VMCPC_F3M_FPT__) p_s->actualControl_a[VMCPC_F3M_VECT_Z_YAW]);
 			break;
 
 		default:
@@ -106,7 +106,7 @@ VMCPC_F3M_ParseControlPackage(
 		}
 	}
 	/* Если принятый пакет данных не валиден */
-	return ((__VMCPC_FPT__)0.0);
+	return ((__VMCPC_F3M_FPT__)0.0);
 }
 
 /*#### |End  | <-- Секция - "Описание глобальных функций" ####################*/

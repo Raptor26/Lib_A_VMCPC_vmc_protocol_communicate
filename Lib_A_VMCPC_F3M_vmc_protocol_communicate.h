@@ -25,7 +25,8 @@
 
 
 /*#### |Begin| --> Секция - "Определение констант" ###########################*/
-
+#define __VMCPC_F3M_FPT__                           float
+#define VMCPC_F3M_START_FRAME_1_BYTE				((uint8_t)0xAA)
 /*#### |End  | <-- Секция - "Определение констант" ###########################*/
 
 
@@ -78,7 +79,7 @@ typedef struct
 	uint8_t startFrame;
 
 	/* Массив, в котором содержится значение управления для каждой из 3-х осей */
-	__VMCPC_FPT__ actualControl_a[VMCPC_F3M_SIZE_VECT_ARR];
+	__VMCPC_F3M_FPT__ actualControl_a[VMCPC_F3M_SIZE_VECT_ARR];
 
 	/* Контрольная сумма пакета данных */
 	uint16_t poly0x1021_crc16;
@@ -101,11 +102,11 @@ vmcpc_f3m_package_s;
 extern void
 VMCPC_F3M_SetControlPackage(
 	vmcpc_f3m_package_s *p_s,
-	__VMCPC_FPT__ roll,
-	__VMCPC_FPT__ pitch,
-	__VMCPC_FPT__ yaw);
+	__VMCPC_F3M_FPT__ roll,
+	__VMCPC_F3M_FPT__ pitch,
+	__VMCPC_F3M_FPT__ yaw);
 
-extern __VMCPC_FPT__
+extern __VMCPC_F3M_FPT__
 VMCPC_F3M_ParseControlPackage(
 	vmcpc_f3m_package_s *p_s,
 	vmcpc_f3m_who_i_am_e whoIAm);
